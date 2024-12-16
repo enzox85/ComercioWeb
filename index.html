@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Punto de Venta</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .header {
+            background-color: #343a40;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 24px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-item {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .nav-item:hover {
+            color: #007bff;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+
+        .content h1 {
+            margin-top: 20px;
+            font-size: 28px;
+        }
+
+        .content p {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Punto de Venta</h1>
+        <nav class="nav-menu">
+            <a href="ventas.php" class="nav-item">Ventas</a>
+            <a href="#caja" class="nav-item">Caja</a>
+            <a href="#cuenta-corriente" class="nav-item">Cuenta Corriente</a>
+            <a href="productos.php" class="nav-item">Productos</a>
+            <a href="#clientes" class="nav-item">Clientes</a>
+            <a href="#configuracion" class="nav-item">Configuración</a>
+        </nav>
+    </header>
+    <div class="content">
+        <h1>Bienvenido</h1>
+        <p>Selecciona una opción del menú para continuar.</p>
+    </div>
+</body>
+</html>
