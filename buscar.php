@@ -1,31 +1,28 @@
 <?php
-// Conexión a la base de datos
-$conn = new mysqli("localhost", "root", "", "comercio2");
+include("conexion.php");
+$con = conectar();
 
-if ($conn->connect_error) {
-    die("Error de conexión: " . $conn->connect_error);
+$search = isset($_POST['search']) ? $_POST['search'] : '';
+
+if (!empty($search)) {
+    $sql = "SELECT * FROM productos WHERE articulos LIKE '%$search%'";
+    $query = $con->query($sql);
+
+    while ($row = $query->fetch_assoc()) {
+        echo "
+        <tr>
+            <td>{$row['stock']}</td>
+            <td>{$row['articulos']}</td>
+            <td>{$row['precio_venta']}</td>
+            <td>
+                <button class='btn btn-primary add-to-cart' 
+                        data-id='{$row['idproducto']}' 
+                        data-descripcion='{$row['articulos']}' 
+                        data-precio='{$row['precio_venta']}'>
+                    Agregar
+                </button>
+            </td>
+        </tr>";
+    }
 }
-
-// Obtener término de búsqueda
-$search = $_GET['search'] ?? '';
-
-// Consultar productos que coinciden con el término de búsqueda
-$sql = "SELECT idproducto, articulos, precio_venta FROM productos WHERE articulos LIKE ?";
-$stmt = $conn->prepare($sql);
-$searchParam = "%$search%";
-$stmt->bind_param("s", $searchParam);
-$stmt->execute();
-$result = $stmt->get_result();
-
-// Guardar los productos en un arreglo
-$productos = [];
-while ($row = $result->fetch_assoc()) {
-    $productos[] = $row;
-}
-
-// Devolver los productos en formato JSON
-echo json_encode($productos);
-
-$stmt->close();
-$conn->close();
 ?>
